@@ -6,7 +6,7 @@ esp32-FakeGotchi - Oled Nice Kitty that start jamming WiFi Strongest Network aro
 - esp32
 - Li-Pol 3.7V Battery
 ## Connection
-###esp32 --> Oled
+### esp32 --> Oled
 - 3.3V --> VCC
 - GND --> GND
 - D22 --> SCL
