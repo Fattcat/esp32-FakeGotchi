@@ -7,10 +7,10 @@ esp32-FakeGotchi - Oled Nice Kitty that start jamming WiFi Strongest Network aro
 
 # See this table for info
 
-| # Versions | # Activity      | Status |
-| ---------- | --------------- | ------ |
-| v1         | OnlyJam      🚫 | Works✅ |
-| v2         | Jam&EvilTwin 🚫 🎭 | Works✅ |
+| Versions   |   Activity      | Status  |
+| ---------- | --------------- | ------   |
+| v1         | OnlyJam  🚫     | Works✅  |
+| v2         | ALL IN 1 🚫 🎭 | Works✅  |
 
 ### v1
 - Easy to use
