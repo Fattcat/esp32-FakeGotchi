@@ -1,5 +1,8 @@
 # esp32-FakeGotchi
 esp32-FakeGotchi - Oled Nice Kitty that start jamming WiFi Strongest Network around u
+
+
+
 ##  It is like Pwnagotchi but on other Level Category
 
 # See this table for info
@@ -16,14 +19,17 @@ esp32-FakeGotchi - Oled Nice Kitty that start jamming WiFi Strongest Network aro
 - **Upload to your FakeGotchi**
 
 ### v2
-- Powerfull Attack device
+- **All inside 1 .bin File**
+- **Powerfull Attack device**
 - More Attacks **AVAILABLE NOW !**
-- Easy setup in Menu
+- MUST setup in Menu
 - More Advanced coding
 - More difficult to edit
 - Need 2 esp32 Boards !
+- **WiFi & Bluetooth Attacks** (finally :D)
+- **Added Custom powerful Library**
 - Price 30€
-- Must Activate Online !
+- **Must Activate Online !**(esp32 will be automatically connected to YOUR WiFi to activate)
 - Please contact me if you want to buy `.bin File`
 
 - Code available in .bin File
