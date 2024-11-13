@@ -50,10 +50,10 @@ esp32-FakeGotchi - Oled Nice Kitty that start jamming WiFi Strongest Network aro
 - Enter D14
 
 # Pros
-- Nice looking (when u have good 3D Case enclosure)
+- Nice looking PCB (also better when u have good 3D Case enclosure)
 - Pop Cat IMGs on Screen (immediatelly shows other OMG depending when Scanning WiFi or attacking)
-- It loons UNDETECTABLE (Try to imagine - who will think this is an attacker :D)
-
+- It looks UNDETECTABLE (Try to imagine - who will think this is an attacker :D)
+- **More advanced** lot of types for **WiFi and Bluetooth Attacks**
 # Cons
 - Weaker than real Pwnagotchi
 - it cant capture handshake :(
