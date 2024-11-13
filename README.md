@@ -6,8 +6,8 @@ esp32-FakeGotchi - Oled Nice Kitty that start jamming WiFi Strongest Network aro
 
 | # Versions | # Activity      | Status |
 | ---------- | --------------- | ------ |
-| v1         | OnlyJam      🚫 | Works ✅ |
-| v2         | Jam&EvilTwin 🎭 | Works ✅ |
+| v1         | OnlyJam      🚫 | Works✅ |
+| v2         | Jam&EvilTwin 🚫 🎭 | Works✅ |
 
 ### v1
 - Easy to use
@@ -22,7 +22,10 @@ esp32-FakeGotchi - Oled Nice Kitty that start jamming WiFi Strongest Network aro
 - More Advanced coding
 - More difficult to edit
 - Need 2 esp32 Boards !
+- Price 30€
 - Must Activate Online !
+- Please contact me if you want to buy `.bin File`
+
 - Code available in .bin File
 - **Upload to your FakeGotchi**
 
