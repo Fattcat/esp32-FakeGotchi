@@ -17,7 +17,7 @@ esp32-FakeGotchi - Oled Nice Kitty that start jamming WiFi Strongest Network aro
 
 ### v2
 - Powerfull Attack device
-- More Attacks ** AVAILABLE NOW !**
+- More Attacks **AVAILABLE NOW !**
 - Easy setup in Menu
 - More Advanced coding
 - More difficult to edit
