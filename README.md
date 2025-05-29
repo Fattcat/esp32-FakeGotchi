@@ -31,9 +31,6 @@ esp32-FakeGotchi - Oled Nice Kitty that start jamming WiFi Strongest Network aro
 - **WiFi & Bluetooth Attacks** (finally :D)
 - **Added Custom powerful Library**
 - Price 30€
-- **Must Activate Online !**(esp32 will be automatically connected to YOUR WiFi to activate so you need connect FAT FORMATED SD Card to esp32 and create file `ConnectMe.txt` and inside this file will be your WiFi credentials EXACTLY LIKE this example SSID: HereYourSSID, PASS: HerePass)
-- Please contact me if you want to buy `.bin File`
-
 - Code available in .bin File
 - **Upload to your FakeGotchi v2**
 
@@ -64,5 +61,4 @@ esp32-FakeGotchi - Oled Nice Kitty that start jamming WiFi Strongest Network aro
 - It looks UNDETECTABLE (Try to imagine - who will think this is an attacker :D)
 - **More advanced** lot of types for **WiFi and Bluetooth Attacks**
 # Cons
-- Weaker than real Pwnagotchi
-- it cant capture handshake :(
+- Weaker than real Pwnagotchi cuz of wifi chip and power
